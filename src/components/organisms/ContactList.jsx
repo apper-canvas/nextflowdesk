@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import { format } from "date-fns"
 import ApperIcon from "@/components/ApperIcon"
@@ -8,12 +9,11 @@ import Loading from "@/components/ui/Loading"
 import Error from "@/components/ui/Error"
 import Empty from "@/components/ui/Empty"
 import { contactService } from "@/services/api/contactService"
-
 const ContactList = ({ searchTerm = "", onContactSelect, onContactAdd }) => {
+  const navigate = useNavigate()
   const [contacts, setContacts] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-
   const loadContacts = async () => {
     try {
       setLoading(true)
@@ -59,10 +59,10 @@ const filteredContacts = contacts.filter(contact =>
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card 
+<Card 
               hover 
               className="p-6 cursor-pointer"
-              onClick={() => onContactSelect?.(contact)}
+              onClick={() => navigate(`/contacts/${contact.Id}`)}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
