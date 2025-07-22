@@ -4,7 +4,7 @@ import { useContext } from "react"
 import ApperIcon from "@/components/ApperIcon"
 import Button from "@/components/atoms/Button"
 import SearchBar from "@/components/molecules/SearchBar"
-import { AuthContext } from "../App"
+import { AuthContext } from "../../App"
 const Header = ({ onMenuClick, title = "Dashboard", showSearch = true, actions }) => {
   return (
     <motion.header
