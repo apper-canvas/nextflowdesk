@@ -22,7 +22,7 @@ const Dashboard = ({ onMenuClick }) => {
         }
 />
       
-      <main className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+<main className="flex-1 overflow-y-auto scrollbar-visible">
         <div className="p-6 space-y-8">
           {/* Stats Overview */}
           <motion.section
