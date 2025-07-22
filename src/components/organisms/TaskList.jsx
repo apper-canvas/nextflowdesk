@@ -124,33 +124,34 @@ case "upcoming":
                 task.status_c === "completed" ? "bg-green-50 opacity-75" : ""
               }`}
             >
+              <div className="flex items-center justify-between">
                 <div className="flex items-start space-x-4 flex-1">
                   <button
                     onClick={() => toggleTaskStatus(task.Id)}
-className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+                    className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
                       task.status_c === "completed"
                         ? "bg-accent-500 border-accent-500 text-white"
                         : "border-gray-300 hover:border-primary-500"
                     }`}
                   >
-{task.status_c === "completed" && (
+                    {task.status_c === "completed" && (
                       <ApperIcon name="Check" className="w-3 h-3" />
                     )}
                   </button>
                   
                   <div className="flex-1">
-<h3 className={`text-lg font-semibold ${
+                    <h3 className={`text-lg font-semibold ${
                       task.status_c === "completed" ? "line-through text-gray-500" : "text-gray-900"
                     }`}>
                       {task.title_c || task.Name}
                     </h3>
                     
-{task.description_c && (
+                    {task.description_c && (
                       <p className="text-gray-600 mt-1">{task.description_c}</p>
                     )}
                     
                     <div className="flex items-center space-x-4 mt-3">
-<span className="text-sm text-gray-500 flex items-center">
+                      <span className="text-sm text-gray-500 flex items-center">
                         <ApperIcon name="Calendar" className="w-4 h-4 mr-1" />
                         Due {task.dueDate_c ? format(new Date(task.dueDate_c), "MMM d, yyyy") : "No due date"}
                       </span>
@@ -163,7 +164,7 @@ className={`mt-1 w-5 h-5 rounded border-2 flex items-center justify-center trans
                   </div>
                 </div>
                 
-<div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3">
                   <PriorityBadge priority={task.priority_c} />
                   <StatusBadge status={task.status_c} type="task" />
                   
