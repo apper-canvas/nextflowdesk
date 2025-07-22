@@ -1,0 +1,84 @@
+import { useState } from "react"
+import { useSearchParams } from "react-router-dom"
+import Header from "@/components/organisms/Header"
+import ContactList from "@/components/organisms/ContactList"
+import Button from "@/components/atoms/Button"
+import ApperIcon from "@/components/ApperIcon"
+
+const Contacts = ({ onMenuClick }) => {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "")
+
+  const handleSearch = (term) => {
+    setSearchTerm(term)
+    if (term) {
+      setSearchParams({ search: term })
+    } else {
+      setSearchParams({})
+    }
+  }
+
+  const handleContactSelect = (contact) => {
+    // In a real app, this would navigate to contact detail page
+    console.log("Selected contact:", contact)
+  }
+
+  const handleContactAdd = () => {
+    // In a real app, this would open add contact modal
+    console.log("Add new contact")
+  }
+
+  return (
+    <div className="flex-1 overflow-hidden">
+      <Header 
+        onMenuClick={onMenuClick}
+        title="Contacts"
+        showSearch={false}
+        actions={
+          <Button onClick={handleContactAdd}>
+            <ApperIcon name="UserPlus" className="w-4 h-4 mr-2" />
+            Add Contact
+          </Button>
+        }
+      />
+      
+      <main className="flex-1 overflow-y-auto">
+        <div className="p-6">
+          {/* Search and Filters */}
+          <div className="mb-6 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex-1">
+                <input
+                  type="text"
+                  placeholder="Search contacts..."
+                  value={searchTerm}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button variant="secondary" size="sm">
+                  <ApperIcon name="Filter" className="w-4 h-4 mr-2" />
+                  Filter
+                </Button>
+                <Button variant="secondary" size="sm">
+                  <ApperIcon name="ArrowUpDown" className="w-4 h-4 mr-2" />
+                  Sort
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact List */}
+          <ContactList 
+            searchTerm={searchTerm}
+            onContactSelect={handleContactSelect}
+            onContactAdd={handleContactAdd}
+          />
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default Contacts

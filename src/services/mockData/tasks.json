@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "title": "Follow up on proposal review",
+    "description": "Check if Sarah has reviewed the enterprise package proposal and address any concerns.",
+    "dueDate": "2024-01-22T09:00:00.000Z",
+    "priority": "high",
+    "status": "pending",
+    "contactId": 1,
+    "dealId": 1
+  },
+  {
+    "Id": 2,
+    "title": "Schedule technical demo",
+    "description": "Coordinate with Michael's team for a technical demo of our platform integration capabilities.",
+    "dueDate": "2024-01-23T14:30:00.000Z",
+    "priority": "high",
+    "status": "pending",
+    "contactId": 2,
+    "dealId": 2
+  },
+  {
+    "Id": 3,
+    "title": "Send case study materials",
+    "description": "Share relevant case studies with Emily that demonstrate ROI in similar operations environments.",
+    "dueDate": "2024-01-21T10:00:00.000Z",
+    "priority": "medium",
+    "status": "completed",
+    "contactId": 3,
+    "dealId": 3
+  },
+  {
+    "Id": 4,
+    "title": "Research Digital Solutions background",
+    "description": "Gather information about David's company to better understand their needs and challenges.",
+    "dueDate": "2024-01-24T16:00:00.000Z",
+    "priority": "low",
+    "status": "pending",
+    "contactId": 4,
+    "dealId": 4
+  },
+  {
+    "Id": 5,
+    "title": "Prepare contract documents",
+    "description": "Draft final contract documents for the FutureFintech API license deal.",
+    "dueDate": "2024-01-19T11:00:00.000Z",
+    "priority": "high",
+    "status": "completed",
+    "contactId": 5,
+    "dealId": 5
+  },
+  {
+    "Id": 6,
+    "title": "Compliance requirements meeting",
+    "description": "Schedule a meeting with Robert to discuss specific healthcare compliance requirements.",
+    "dueDate": "2024-01-25T13:00:00.000Z",
+    "priority": "medium",
+    "status": "in_progress",
+    "contactId": 6,
+    "dealId": 6
+  },
+  {
+    "Id": 7,
+    "title": "Quarterly business review",
+    "description": "Prepare quarterly review presentation for existing clients.",
+    "dueDate": "2024-01-20T15:00:00.000Z",
+    "priority": "medium",
+    "status": "pending",
+    "contactId": 1,
+    "dealId": null
+  }
+]

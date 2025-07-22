@@ -1,0 +1,94 @@
+[
+  {
+    "Id": 1,
+    "type": "call",
+    "description": "Had a productive 30-minute call with Sarah about the enterprise package. She's very interested and wants to schedule a demo for her team.",
+    "contactId": 1,
+    "timestamp": "2024-01-20T14:45:00.000Z",
+    "metadata": {
+      "duration": "30 minutes",
+      "outcome": "positive",
+      "nextSteps": "Schedule team demo"
+    }
+  },
+  {
+    "Id": 2,
+    "type": "email",
+    "description": "Sent detailed proposal and pricing information to Michael for the platform integration project.",
+    "contactId": 2,
+    "timestamp": "2024-01-18T16:20:00.000Z",
+    "metadata": {
+      "subject": "Platform Integration Proposal - InnovateCorp",
+      "status": "sent"
+    }
+  },
+  {
+    "Id": 3,
+    "type": "meeting",
+    "description": "Initial discovery meeting with Emily to understand Growth Ventures' operational challenges and requirements.",
+    "contactId": 3,
+    "timestamp": "2024-01-19T11:30:00.000Z",
+    "metadata": {
+      "location": "Virtual - Zoom",
+      "attendees": 3,
+      "duration": "45 minutes"
+    }
+  },
+  {
+    "Id": 4,
+    "type": "note",
+    "description": "David mentioned they're looking for a solution that can scale with their rapid growth. Emphasized our startup-friendly pricing model.",
+    "contactId": 4,
+    "timestamp": "2024-01-17T15:15:00.000Z",
+    "metadata": {
+      "source": "LinkedIn message",
+      "priority": "medium"
+    }
+  },
+  {
+    "Id": 5,
+    "type": "meeting",
+    "description": "Contract signing meeting with Lisa. Deal officially closed! They're excited to start implementation next month.",
+    "contactId": 5,
+    "timestamp": "2024-01-16T09:45:00.000Z",
+    "metadata": {
+      "location": "FutureFintech Offices",
+      "deal_value": "$95,000",
+      "contract_length": "24 months"
+    }
+  },
+  {
+    "Id": 6,
+    "type": "call",
+    "description": "Brief check-in call with Robert about compliance requirements. He's reviewing our security documentation.",
+    "contactId": 6,
+    "timestamp": "2024-01-15T13:25:00.000Z",
+    "metadata": {
+      "duration": "15 minutes",
+      "topic": "Security & Compliance",
+      "followup_required": true
+    }
+  },
+  {
+    "Id": 7,
+    "type": "email",
+    "description": "Followed up with Sarah after our call. Sent calendar invite for next week's team demo.",
+    "contactId": 1,
+    "timestamp": "2024-01-20T15:30:00.000Z",
+    "metadata": {
+      "subject": "Team Demo - Calendar Invite",
+      "action_required": "Confirm attendance"
+    }
+  },
+  {
+    "Id": 8,
+    "type": "task",
+    "description": "Completed research on Digital Solutions' tech stack and recent funding. Ready for next conversation with David.",
+    "contactId": 4,
+    "timestamp": "2024-01-17T16:45:00.000Z",
+    "metadata": {
+      "research_type": "Company background",
+      "sources": "Crunchbase, LinkedIn, company blog"
+    }
+  }
+]

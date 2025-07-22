@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 1,
+    "name": "Sarah Chen",
+    "email": "sarah.chen@techstart.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechStart Inc",
+    "position": "VP of Marketing",
+    "tags": ["hot-lead", "enterprise", "marketing"],
+    "createdAt": "2024-01-15T08:30:00.000Z",
+    "lastActivity": "2024-01-20T14:45:00.000Z"
+  },
+  {
+    "Id": 2,
+    "name": "Michael Rodriguez",
+    "email": "m.rodriguez@innovatecorp.com",
+    "phone": "+1 (555) 987-6543",
+    "company": "InnovateCorp",
+    "position": "CTO",
+    "tags": ["technical", "decision-maker", "saas"],
+    "createdAt": "2024-01-12T10:15:00.000Z",
+    "lastActivity": "2024-01-18T16:20:00.000Z"
+  },
+  {
+    "Id": 3,
+    "name": "Emily Thompson",
+    "email": "emily.t@growthventures.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Growth Ventures",
+    "position": "Operations Manager",
+    "tags": ["operations", "mid-market", "process"],
+    "createdAt": "2024-01-10T09:45:00.000Z",
+    "lastActivity": "2024-01-19T11:30:00.000Z"
+  },
+  {
+    "Id": 4,
+    "name": "David Kim",
+    "email": "david.kim@digitalsolutions.co",
+    "phone": "+1 (555) 321-0987",
+    "company": "Digital Solutions Co",
+    "position": "Founder & CEO",
+    "tags": ["founder", "startup", "digital-transformation"],
+    "createdAt": "2024-01-08T13:20:00.000Z",
+    "lastActivity": "2024-01-17T15:15:00.000Z"
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Wang",
+    "email": "lisa.wang@futurefintech.com",
+    "phone": "+1 (555) 654-3210",
+    "company": "FutureFintech",
+    "position": "Head of Sales",
+    "tags": ["sales", "fintech", "enterprise"],
+    "createdAt": "2024-01-05T14:10:00.000Z",
+    "lastActivity": "2024-01-16T09:45:00.000Z"
+  },
+  {
+    "Id": 6,
+    "name": "Robert Johnson",
+    "email": "robert.j@healthtech.org",
+    "phone": "+1 (555) 789-0123",
+    "company": "HealthTech Solutions",
+    "position": "Product Director",
+    "tags": ["product", "healthcare", "compliance"],
+    "createdAt": "2024-01-03T16:30:00.000Z",
+    "lastActivity": "2024-01-15T13:25:00.000Z"
+  }
+]
