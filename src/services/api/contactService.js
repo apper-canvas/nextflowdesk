@@ -45,15 +45,25 @@ export const contactService = {
     }
   },
 
-  async getById(id) {
+async getById(id) {
     try {
+      // Validate and convert ID parameter
+      const contactId = typeof id === 'string' ? parseInt(id, 10) : parseInt(id);
+      
+      if (isNaN(contactId) || contactId <= 0) {
+        console.error(`Invalid contact ID provided: ${id}`);
+        return null;
+      }
+
+      console.log(`Fetching contact with ID: ${contactId}`);
+
       const { ApperClient } = window.ApperSDK;
       const apperClient = new ApperClient({
         apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-const params = {
+      const params = {
         fields: [
           { field: { Name: "Name" } },
           { field: { Name: "Tags" } },
@@ -71,19 +81,20 @@ const params = {
         ]
       };
 
-      const response = await apperClient.getRecordById("app_contact_c", parseInt(id), params);
+      const response = await apperClient.getRecordById("app_contact_c", contactId, params);
       
       if (!response.success) {
-        console.error(response.message);
+        console.error(`Failed to fetch contact ID ${contactId}:`, response.message);
         return null;
       }
 
+      console.log(`Successfully fetched contact ID ${contactId}`);
       return response.data;
     } catch (error) {
       if (error?.response?.data?.message) {
         console.error(`Error fetching contact with ID ${id}:`, error?.response?.data?.message);
       } else {
-        console.error(error.message);
+        console.error(`Error fetching contact with ID ${id}:`, error.message);
       }
       return null;
     }
