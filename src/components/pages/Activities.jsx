@@ -3,10 +3,11 @@ import Header from "@/components/organisms/Header"
 import ActivityTimeline from "@/components/organisms/ActivityTimeline"
 import Button from "@/components/atoms/Button"
 import ApperIcon from "@/components/ApperIcon"
+import ActivityModal from "@/components/molecules/ActivityModal"
 
 const Activities = ({ onMenuClick }) => {
   const [filter, setFilter] = useState("all")
-
+  const [isActivityModalOpen, setIsActivityModalOpen] = useState(false)
   const filters = [
     { key: "all", label: "All Activities", icon: "Activity" },
     { key: "call", label: "Calls", icon: "Phone" },
@@ -15,11 +16,18 @@ const Activities = ({ onMenuClick }) => {
     { key: "note", label: "Notes", icon: "FileText" }
   ]
 
-  const handleActivityAdd = () => {
-    // In a real app, this would open add activity modal
-    console.log("Log new activity")
+const handleActivityAdd = () => {
+    setIsActivityModalOpen(true)
   }
 
+  const handleActivityCreated = (newActivity) => {
+    // Activity created successfully, modal will close and show success toast
+    // ActivityTimeline will refresh when the component re-renders
+  }
+
+  const handleCloseActivityModal = () => {
+    setIsActivityModalOpen(false)
+  }
   return (
     <div className="flex-1 overflow-hidden">
       <Header 
@@ -56,10 +64,16 @@ const Activities = ({ onMenuClick }) => {
             </div>
           </div>
 
-          {/* Activity Timeline */}
+{/* Activity Timeline */}
           <ActivityTimeline />
         </div>
       </main>
+
+      <ActivityModal
+        isOpen={isActivityModalOpen}
+        onClose={handleCloseActivityModal}
+        onActivityCreated={handleActivityCreated}
+      />
     </div>
   )
 }
