@@ -49,9 +49,9 @@ const filteredContacts = contacts.filter(contact =>
     />
   )
 
-  return (
+return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-4 max-h-[calc(100vh-300px)] overflow-y-auto scrollbar-visible">
         {filteredContacts.map((contact, index) => (
           <motion.div
             key={contact.Id}
