@@ -129,7 +129,7 @@ const getContactName = (contactId) => {
                       const metadata = JSON.parse(activity.metadata_c);
                       return Object.keys(metadata).length > 0 ? (
                         <div className="mt-3 p-3 bg-gray-50 rounded-lg">
-                          <p className="text-sm font-medium text-gray-700 mb-1">Additional Details:</p>
+<p className="text-sm font-medium text-gray-700 mb-1">Additional Details:</p>
                           <div className="text-sm text-gray-600 space-y-1">
                             {Object.entries(metadata).map(([key, value]) => (
                               <div key={key} className="flex">
