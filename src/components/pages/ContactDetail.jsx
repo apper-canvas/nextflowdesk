@@ -22,21 +22,45 @@ const loadContact = async () => {
       setLoading(true)
       setError("")
       
-      // Validate ID parameter
-      const contactId = parseInt(id, 10)
-      if (isNaN(contactId) || contactId <= 0) {
-        setError("Invalid contact ID")
+      // Enhanced ID validation with debugging
+      console.log('ContactDetail - Raw ID parameter from URL:', id)
+      
+      if (!id) {
+        console.error('ContactDetail - ID parameter is missing from URL')
+        setError("Contact ID is missing")
         setLoading(false)
         return
       }
       
+      const contactId = parseInt(id, 10)
+      console.log('ContactDetail - Parsed contact ID:', contactId)
+      
+      if (isNaN(contactId)) {
+        console.error('ContactDetail - ID is not a valid number:', id)
+        setError(`Invalid contact ID format: "${id}"`)
+        setLoading(false)
+        return
+      }
+      
+      if (contactId <= 0) {
+        console.error('ContactDetail - ID must be positive:', contactId)
+        setError(`Invalid contact ID: ${contactId}`)
+        setLoading(false)
+        return
+      }
+      
+      console.log('ContactDetail - Attempting to fetch contact with ID:', contactId)
       const data = await contactService.getById(contactId)
+      
       if (data) {
+        console.log('ContactDetail - Contact loaded successfully:', data.Name)
         setContact(data)
       } else {
+        console.error('ContactDetail - No contact data returned for ID:', contactId)
         setError("Contact not found")
       }
     } catch (err) {
+      console.error('ContactDetail - Error loading contact:', err)
       setError("Failed to load contact details. Please try again.")
     } finally {
       setLoading(false)
