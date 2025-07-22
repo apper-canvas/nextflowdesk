@@ -22,12 +22,13 @@ const loadContact = async () => {
       setLoading(true)
       setError("")
       
-      // Enhanced ID validation with debugging
+// Enhanced ID validation with debugging
       console.log('ContactDetail - Raw ID parameter from URL:', id)
+      console.log('ContactDetail - typeof id:', typeof id)
       
-      if (!id) {
-        console.error('ContactDetail - ID parameter is missing from URL')
-        setError("Contact ID is missing")
+      if (!id || id === 'undefined') {
+        console.error('ContactDetail - ID parameter is missing or undefined from URL:', id)
+        setError(`Invalid contact ID format: "${id}". This usually happens when clicking on a contact card that doesn't have a proper ID.`)
         setLoading(false)
         return
       }
@@ -37,7 +38,7 @@ const loadContact = async () => {
       
       if (isNaN(contactId)) {
         console.error('ContactDetail - ID is not a valid number:', id)
-        setError(`Invalid contact ID format: "${id}"`)
+        setError(`Invalid contact ID format: "${id}". Contact ID must be a number.`)
         setLoading(false)
         return
       }

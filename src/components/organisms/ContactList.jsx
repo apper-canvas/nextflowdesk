@@ -62,7 +62,17 @@ return (
 <Card 
               hover 
               className="p-6 cursor-pointer"
-              onClick={() => navigate(`/contacts/${contact.Id}`)}
+              onClick={() => {
+                console.log('ContactList - Contact object:', contact);
+                console.log('ContactList - Contact ID:', contact.Id);
+                
+                if (!contact.Id && contact.Id !== 0) {
+                  console.error('ContactList - Contact ID is missing or undefined:', contact);
+                  return;
+                }
+                
+                navigate(`/contacts/${contact.Id}`);
+              }}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
@@ -72,6 +82,10 @@ return (
 <div>
                     <h3 className="text-lg font-semibold text-gray-900">{contact.Name}</h3>
                     <p className="text-sm text-gray-600">{contact.position_c} at {contact.company_c}</p>
+                    {/* Debug info - remove in production */}
+                    {(!contact.Id && contact.Id !== 0) && (
+                      <p className="text-xs text-red-500">Warning: Contact ID missing</p>
+                    )}
                     <div className="flex items-center space-x-4 mt-2">
                       <span className="text-sm text-gray-500 flex items-center">
                         <ApperIcon name="Mail" className="w-3 h-3 mr-1" />
