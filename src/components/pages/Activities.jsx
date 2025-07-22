@@ -40,9 +40,9 @@ const handleActivityAdd = () => {
             Log Activity
           </Button>
         }
-      />
+/>
       
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
         <div className="p-6">
           {/* Filter Tabs */}
           <div className="mb-8">
