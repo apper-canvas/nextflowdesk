@@ -45,7 +45,9 @@ export default {
           '100%': { transform: 'translateX(100%)' },
         }
       }
-    },
+},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
