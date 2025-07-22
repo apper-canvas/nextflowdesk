@@ -47,18 +47,20 @@ const DealPipeline = ({ onDealAdd }) => {
     loadData()
   }, [])
 
-  const getContactName = (contactId) => {
+const getContactName = (contactId) => {
     const contact = contacts.find(c => c.Id === contactId)
-    return contact?.name || "Unknown Contact"
+    return contact?.Name || "Unknown Contact"
   }
 
-  const handleStageChange = async (dealId, newStage) => {
+const handleStageChange = async (dealId, newStage) => {
     try {
       const updatedDeal = await dealService.update(dealId, { stage: newStage })
-      setDeals(deals.map(deal => 
-        deal.Id === dealId ? updatedDeal : deal
-      ))
-      toast.success("Deal stage updated successfully!")
+      if (updatedDeal) {
+        setDeals(deals.map(deal => 
+          deal.Id === dealId ? updatedDeal : deal
+        ))
+        toast.success("Deal stage updated successfully!")
+      }
     } catch (err) {
       toast.error("Failed to update deal stage")
     }
@@ -80,9 +82,9 @@ const DealPipeline = ({ onDealAdd }) => {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        {stages.map((stage) => {
-          const stageDeals = deals.filter(deal => deal.stage === stage.key)
-          const stageValue = stageDeals.reduce((sum, deal) => sum + deal.value, 0)
+{stages.map((stage) => {
+          const stageDeals = deals.filter(deal => deal.stage_c === stage.key)
+          const stageValue = stageDeals.reduce((sum, deal) => sum + (deal.value_c || 0), 0)
 
           return (
             <div key={stage.key} className="space-y-4">
@@ -111,33 +113,33 @@ const DealPipeline = ({ onDealAdd }) => {
                       className="p-4 cursor-move border-l-4 border-primary-500"
                     >
                       <div className="space-y-3">
-                        <div>
-                          <h4 className="font-semibold text-gray-900">{deal.title}</h4>
-                          <p className="text-sm text-gray-600">{getContactName(deal.contactId)}</p>
+<div>
+                        <h4 className="font-semibold text-gray-900">{deal.title_c}</h4>
+                        <p className="text-sm text-gray-600">{getContactName(deal.contactId_c?.Id || deal.contactId_c)}</p>
                         </div>
                         
-                        <div className="flex items-center justify-between">
-                          <span className="text-lg font-bold text-primary-600">
-                            ${deal.value.toLocaleString()}
-                          </span>
-                          <StatusBadge status={deal.stage} type="deal" />
-                        </div>
+<div className="flex items-center justify-between">
+                        <span className="text-lg font-bold text-primary-600">
+                          ${(deal.value_c || 0).toLocaleString()}
+                        </span>
+                        <StatusBadge status={deal.stage_c} type="deal" />
+                      </div>
                         
-                        <div className="flex items-center justify-between text-xs text-gray-500">
-                          <span>{deal.probability}% probability</span>
-                          <span>{format(new Date(deal.expectedClose), "MMM d")}</span>
-                        </div>
+<div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>{deal.probability_c}% probability</span>
+                        <span>{deal.expectedClose_c ? format(new Date(deal.expectedClose_c), "MMM d") : "No date"}</span>
+                      </div>
                         
                         <div className="flex space-x-1">
                           {stages.map((s) => (
                             <button
                               key={s.key}
                               onClick={() => handleStageChange(deal.Id, s.key)}
-                              className={`px-2 py-1 text-xs rounded ${
-                                s.key === deal.stage 
-                                  ? "bg-primary-500 text-white" 
-                                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                              }`}
+className={`px-2 py-1 text-xs rounded ${
+                              s.key === deal.stage_c 
+                                ? "bg-primary-500 text-white" 
+                                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                            }`}
                             >
                               {s.title}
                             </button>

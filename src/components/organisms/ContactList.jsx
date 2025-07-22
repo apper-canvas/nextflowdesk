@@ -31,10 +31,10 @@ const ContactList = ({ searchTerm = "", onContactSelect, onContactAdd }) => {
     loadContacts()
   }, [])
 
-  const filteredContacts = contacts.filter(contact => 
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.company.toLowerCase().includes(searchTerm.toLowerCase())
+const filteredContacts = contacts.filter(contact => 
+    contact.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.email_c?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    contact.company_c?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   if (loading) return <Loading type="table" />
@@ -69,39 +69,39 @@ const ContactList = ({ searchTerm = "", onContactSelect, onContactAdd }) => {
                   <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-purple-100 rounded-full flex items-center justify-center">
                     <ApperIcon name="User" className="w-6 h-6 text-primary-600" />
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{contact.name}</h3>
-                    <p className="text-sm text-gray-600">{contact.position} at {contact.company}</p>
+<div>
+                    <h3 className="text-lg font-semibold text-gray-900">{contact.Name}</h3>
+                    <p className="text-sm text-gray-600">{contact.position_c} at {contact.company_c}</p>
                     <div className="flex items-center space-x-4 mt-2">
                       <span className="text-sm text-gray-500 flex items-center">
                         <ApperIcon name="Mail" className="w-3 h-3 mr-1" />
-                        {contact.email}
+                        {contact.email_c}
                       </span>
-                      {contact.phone && (
+                      {contact.phone_c && (
                         <span className="text-sm text-gray-500 flex items-center">
                           <ApperIcon name="Phone" className="w-3 h-3 mr-1" />
-                          {contact.phone}
+                          {contact.phone_c}
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
+<div className="flex items-center space-x-3">
                   <div className="text-right text-sm text-gray-500">
-                    <p>Added {format(new Date(contact.createdAt), "MMM d, yyyy")}</p>
-                    {contact.lastActivity && (
-                      <p>Last activity: {format(new Date(contact.lastActivity), "MMM d")}</p>
+                    <p>Added {contact.createdAt_c ? format(new Date(contact.createdAt_c), "MMM d, yyyy") : "N/A"}</p>
+                    {contact.lastActivity_c && (
+                      <p>Last activity: {format(new Date(contact.lastActivity_c), "MMM d")}</p>
                     )}
                   </div>
                   <div className="flex flex-wrap gap-1">
-                    {contact.tags.slice(0, 2).map(tag => (
+                    {contact.Tags && contact.Tags.split(',').slice(0, 2).map(tag => tag.trim()).filter(Boolean).map(tag => (
                       <Badge key={tag} variant="secondary" className="text-xs">
                         {tag}
                       </Badge>
                     ))}
-                    {contact.tags.length > 2 && (
+                    {contact.Tags && contact.Tags.split(',').length > 2 && (
                       <Badge variant="default" className="text-xs">
-                        +{contact.tags.length - 2}
+                        +{contact.Tags.split(',').length - 2}
                       </Badge>
                     )}
                   </div>

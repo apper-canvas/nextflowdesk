@@ -25,9 +25,9 @@ const ActivityTimeline = ({ contactId, limit }) => {
         contactService.getAll()
       ])
       
-      let filteredActivities = activitiesData
+let filteredActivities = activitiesData
       if (contactId) {
-        filteredActivities = activitiesData.filter(a => a.contactId === contactId)
+        filteredActivities = activitiesData.filter(a => a.contactId_c?.Id === contactId || a.contactId_c === contactId)
       }
       
       if (limit) {
@@ -47,9 +47,9 @@ const ActivityTimeline = ({ contactId, limit }) => {
     loadData()
   }, [contactId, limit])
 
-  const getContactName = (contactId) => {
+const getContactName = (contactId) => {
     const contact = contacts.find(c => c.Id === contactId)
-    return contact?.name || "Unknown Contact"
+    return contact?.Name || "Unknown Contact"
   }
 
   const getActivityIcon = (type) => {
@@ -100,43 +100,54 @@ const ActivityTimeline = ({ contactId, limit }) => {
             className="relative flex items-start space-x-4 pb-8"
           >
             {/* Timeline dot */}
-            <div className={`relative z-10 flex items-center justify-center w-8 h-8 rounded-full ${getActivityColor(activity.type)}`}>
-              <ApperIcon name={getActivityIcon(activity.type)} className="w-4 h-4" />
+<div className={`relative z-10 flex items-center justify-center w-8 h-8 rounded-full ${getActivityColor(activity.type_c)}`}>
+              <ApperIcon name={getActivityIcon(activity.type_c)} className="w-4 h-4" />
             </div>
             
             {/* Activity content */}
             <Card className="flex-1 p-4">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Badge variant="secondary">{activity.type}</Badge>
+<div className="flex items-center space-x-2 mb-2">
+                    <Badge variant="secondary">{activity.type_c}</Badge>
                     <span className="text-sm text-gray-500">
-                      {format(new Date(activity.timestamp), "MMM d, yyyy 'at' h:mm a")}
+                      {format(new Date(activity.timestamp_c), "MMM d, yyyy 'at' h:mm a")}
                     </span>
                   </div>
                   
-                  <p className="text-gray-900 mb-2">{activity.description}</p>
+<p className="text-gray-900 mb-2">{activity.description_c}</p>
                   
                   {!contactId && (
-                    <p className="text-sm text-gray-600 flex items-center">
+<p className="text-sm text-gray-600 flex items-center">
                       <ApperIcon name="User" className="w-3 h-3 mr-1" />
-                      {getContactName(activity.contactId)}
+                      {getContactName(activity.contactId_c?.Id || activity.contactId_c)}
                     </p>
                   )}
                   
-                  {activity.metadata && Object.keys(activity.metadata).length > 0 && (
-                    <div className="mt-3 p-3 bg-gray-50 rounded-lg">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Additional Details:</p>
-                      <div className="text-sm text-gray-600 space-y-1">
-                        {Object.entries(activity.metadata).map(([key, value]) => (
-                          <div key={key} className="flex">
-                            <span className="font-medium mr-2 capitalize">{key}:</span>
-                            <span>{value}</span>
+{activity.metadata_c && (() => {
+                    try {
+                      const metadata = JSON.parse(activity.metadata_c);
+                      return Object.keys(metadata).length > 0 ? (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                          <p className="text-sm font-medium text-gray-700 mb-1">Additional Details:</p>
+                          <div className="text-sm text-gray-600 space-y-1">
+                            {Object.entries(metadata).map(([key, value]) => (
+                              <div key={key} className="flex">
+                                <span className="font-medium mr-2 capitalize">{key}:</span>
+                                <span>{value}</span>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                        </div>
+                      ) : null;
+                    } catch (e) {
+                      return activity.metadata_c ? (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                          <p className="text-sm text-gray-600">{activity.metadata_c}</p>
+                        </div>
+                      ) : null;
+                    }
+                  })()}
                 </div>
               </div>
             </Card>
