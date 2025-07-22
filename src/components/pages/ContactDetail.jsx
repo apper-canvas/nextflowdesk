@@ -17,11 +17,20 @@ const ContactDetail = ({ onMenuClick }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
 
-  const loadContact = async () => {
+const loadContact = async () => {
     try {
       setLoading(true)
       setError("")
-      const data = await contactService.getById(id)
+      
+      // Validate ID parameter
+      const contactId = parseInt(id, 10)
+      if (isNaN(contactId) || contactId <= 0) {
+        setError("Invalid contact ID")
+        setLoading(false)
+        return
+      }
+      
+      const data = await contactService.getById(contactId)
       if (data) {
         setContact(data)
       } else {
