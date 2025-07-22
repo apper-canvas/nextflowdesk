@@ -1,10 +1,10 @@
-import { useState } from "react"
-import { useSearchParams, useNavigate } from "react-router-dom"
-import Header from "@/components/organisms/Header"
-import ContactList from "@/components/organisms/ContactList"
-import Button from "@/components/atoms/Button"
-import ApperIcon from "@/components/ApperIcon"
-import ContactModal from "@/components/molecules/ContactModal"
+import React, { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import ApperIcon from "@/components/ApperIcon";
+import ContactList from "@/components/organisms/ContactList";
+import Header from "@/components/organisms/Header";
+import ContactModal from "@/components/molecules/ContactModal";
+import Button from "@/components/atoms/Button";
 
 const Contacts = ({ onMenuClick }) => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -33,8 +33,9 @@ const handleContactAdd = () => {
     // Force ContactList to refresh by updating search params
     setSearchParams(prev => ({ ...Object.fromEntries(prev), _refresh: Date.now() }))
   }
+
   return (
-    <div className="flex-1 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full">
       <Header 
         onMenuClick={onMenuClick}
         title="Contacts"
@@ -45,9 +46,9 @@ const handleContactAdd = () => {
             Add Contact
           </Button>
         }
-/>
+      />
       
-<main className="flex-1 overflow-y-auto scrollbar-visible">
+      <main className="flex-1 overflow-y-auto scrollbar-visible h-0">
         <div className="p-6">
           {/* Search and Filters */}
           <div className="mb-6 space-y-4">
@@ -80,7 +81,7 @@ const handleContactAdd = () => {
             onContactSelect={handleContactSelect}
             onContactAdd={handleContactAdd}
           />
-</div>
+        </div>
       </main>
 
       <ContactModal
