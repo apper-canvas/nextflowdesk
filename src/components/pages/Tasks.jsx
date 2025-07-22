@@ -1,11 +1,14 @@
 import { useState } from "react"
+import { toast } from "react-toastify"
 import Header from "@/components/organisms/Header"
 import TaskList from "@/components/organisms/TaskList"
 import Button from "@/components/atoms/Button"
 import ApperIcon from "@/components/ApperIcon"
-
+import TaskModal from "@/components/molecules/TaskModal"
 const Tasks = ({ onMenuClick }) => {
   const [filter, setFilter] = useState("all")
+  const [showTaskModal, setShowTaskModal] = useState(false)
+  const [refreshKey, setRefreshKey] = useState(0)
 
   const filters = [
     { key: "all", label: "All Tasks", icon: "List" },
@@ -15,9 +18,13 @@ const Tasks = ({ onMenuClick }) => {
     { key: "completed", label: "Completed", icon: "CheckCircle" }
   ]
 
-  const handleTaskAdd = () => {
-    // In a real app, this would open add task modal
-    console.log("Add new task")
+const handleTaskAdd = () => {
+    setShowTaskModal(true)
+  }
+
+  const handleTaskCreated = (newTask) => {
+    setRefreshKey(prev => prev + 1)
+    toast.success(`Task "${newTask.title}" created successfully!`)
   }
 
   return (
@@ -56,10 +63,16 @@ const Tasks = ({ onMenuClick }) => {
             </div>
           </div>
 
-          {/* Task List */}
-          <TaskList filter={filter} onTaskAdd={handleTaskAdd} />
-        </div>
+{/* Task List */}
+          <TaskList key={refreshKey} filter={filter} onTaskAdd={handleTaskAdd} />
+</div>
       </main>
+
+      <TaskModal
+        isOpen={showTaskModal}
+        onClose={() => setShowTaskModal(false)}
+        onTaskCreated={handleTaskCreated}
+      />
     </div>
   )
 }
