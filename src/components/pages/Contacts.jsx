@@ -4,11 +4,12 @@ import Header from "@/components/organisms/Header"
 import ContactList from "@/components/organisms/ContactList"
 import Button from "@/components/atoms/Button"
 import ApperIcon from "@/components/ApperIcon"
+import ContactModal from "@/components/molecules/ContactModal"
 
 const Contacts = ({ onMenuClick }) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "")
-
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const handleSearch = (term) => {
     setSearchTerm(term)
     if (term) {
@@ -23,11 +24,14 @@ const Contacts = ({ onMenuClick }) => {
     console.log("Selected contact:", contact)
   }
 
-  const handleContactAdd = () => {
-    // In a real app, this would open add contact modal
-    console.log("Add new contact")
+const handleContactAdd = () => {
+    setIsModalOpen(true)
   }
 
+  const handleContactCreated = (newContact) => {
+    // Force ContactList to refresh by updating search params
+    setSearchParams(prev => ({ ...Object.fromEntries(prev), _refresh: Date.now() }))
+  }
   return (
     <div className="flex-1 overflow-hidden">
       <Header 
@@ -75,8 +79,14 @@ const Contacts = ({ onMenuClick }) => {
             onContactSelect={handleContactSelect}
             onContactAdd={handleContactAdd}
           />
-        </div>
+</div>
       </main>
+
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onContactCreated={handleContactCreated}
+      />
     </div>
   )
 }
