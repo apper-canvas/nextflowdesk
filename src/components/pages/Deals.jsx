@@ -3,13 +3,18 @@ import Header from "@/components/organisms/Header"
 import DealPipeline from "@/components/organisms/DealPipeline"
 import Button from "@/components/atoms/Button"
 import ApperIcon from "@/components/ApperIcon"
+import DealModal from "@/components/molecules/DealModal"
 
 const Deals = ({ onMenuClick }) => {
   const [viewMode, setViewMode] = useState("pipeline") // pipeline, list
+  const [isDealModalOpen, setIsDealModalOpen] = useState(false)
 
   const handleDealAdd = () => {
-    // In a real app, this would open add deal modal
-    console.log("Add new deal")
+    setIsDealModalOpen(true)
+  }
+
+  const handleDealModalClose = () => {
+    setIsDealModalOpen(false)
   }
 
   return (
@@ -52,11 +57,16 @@ const Deals = ({ onMenuClick }) => {
         }
       />
       
-      <main className="flex-1 overflow-y-auto">
+<main className="flex-1 overflow-y-auto">
         <div className="p-6">
           <DealPipeline onDealAdd={handleDealAdd} />
         </div>
       </main>
+      
+      <DealModal 
+        isOpen={isDealModalOpen}
+        onClose={handleDealModalClose}
+      />
     </div>
   )
 }
