@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import { format } from "date-fns"
-import Header from "@/components/organisms/Header"
-import Card from "@/components/atoms/Card"
-import Badge from "@/components/atoms/Badge"
-import Button from "@/components/atoms/Button"
-import Loading from "@/components/ui/Loading"
-import Error from "@/components/ui/Error"
-import ApperIcon from "@/components/ApperIcon"
-import { contactService } from "@/services/api/contactService"
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { format } from "date-fns";
+import ApperIcon from "@/components/ApperIcon";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import Header from "@/components/organisms/Header";
+import Card from "@/components/atoms/Card";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
+import { contactService } from "@/services/api/contactService";
 
 const ContactDetail = ({ onMenuClick }) => {
   const { id } = useParams()
@@ -60,10 +60,10 @@ const ContactDetail = ({ onMenuClick }) => {
             Back to Contacts
           </Button>
         }
-      />
+/>
       
-      <main className="flex-1 overflow-y-auto">
-        <div className="p-6 max-w-4xl mx-auto">
+      <main className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+        <div className="p-6">
           {/* Contact Header */}
           <Card className="p-8 mb-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -256,7 +256,7 @@ const ContactDetail = ({ onMenuClick }) => {
                 <span className="text-sm">Add Note</span>
               </Button>
             </div>
-          </Card>
+</Card>
         </div>
       </main>
     </div>
