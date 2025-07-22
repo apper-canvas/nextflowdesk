@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import Header from "@/components/organisms/Header"
 import ContactList from "@/components/organisms/ContactList"
 import Button from "@/components/atoms/Button"
@@ -8,8 +8,10 @@ import ContactModal from "@/components/molecules/ContactModal"
 
 const Contacts = ({ onMenuClick }) => {
   const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "")
   const [isModalOpen, setIsModalOpen] = useState(false)
+  
   const handleSearch = (term) => {
     setSearchTerm(term)
     if (term) {
@@ -20,8 +22,7 @@ const Contacts = ({ onMenuClick }) => {
   }
 
   const handleContactSelect = (contact) => {
-    // In a real app, this would navigate to contact detail page
-    console.log("Selected contact:", contact)
+    navigate(`/contacts/${contact.Id}`)
   }
 
 const handleContactAdd = () => {

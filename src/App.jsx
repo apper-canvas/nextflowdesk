@@ -6,6 +6,7 @@ import { setUser, clearUser } from './store/userSlice';
 import Sidebar from "@/components/organisms/Sidebar"
 import Dashboard from "@/components/pages/Dashboard"
 import Contacts from "@/components/pages/Contacts"
+import ContactDetail from "@/components/pages/ContactDetail"
 import Deals from "@/components/pages/Deals"
 import Tasks from "@/components/pages/Tasks"
 import Activities from "@/components/pages/Activities"
@@ -147,9 +148,13 @@ if (!isInitialized) {
                 path="/tasks" 
                 element={<Tasks onMenuClick={() => setSidebarOpen(true)} />} 
               />
-              <Route 
+<Route 
                 path="/activities" 
                 element={<Activities onMenuClick={() => setSidebarOpen(true)} />} 
+              />
+              <Route 
+                path="/contacts/:id" 
+                element={<ContactDetail onMenuClick={() => setSidebarOpen(true)} />} 
               />
             </Routes>
           </div>
